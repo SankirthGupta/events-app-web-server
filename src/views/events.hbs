@@ -6,6 +6,8 @@
             <th>Description</th>
             <th>Location</th>
             <th>Date</th>
+            <th>Likes</th>
+            <th>DisLikes</th>
         </tr>
         </thead>
         <tbody>
@@ -15,6 +17,8 @@
                 <td>{{ description }}</td>
                 <td>{{ location }}</td>
                 <td>{{ date }}</td>
+                <td>{{ likes }}&nbsp;<button value="{{id}}" class="like-button">Like</button></td>
+                <td>{{ dislikes }}&nbsp;<button value="{{id}}" class="dislike-button">DisLike</button></td>
             </tr>
         {{/events}}
         </tbody>
@@ -46,5 +50,9 @@
         </div>
     </form>
 </div>
+<script>
+    $('.like-button').on('click', (event => {$.post(`/event/like/${event.target.value}`, () => {location.reload()})}));
+    $('.dislike-button').on('click', (event => {$.post(`/event/dislike/${event.target.value}`, () => {location.reload()})}));
+</script>
 
 

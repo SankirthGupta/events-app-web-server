@@ -40,5 +40,28 @@ router.post('/event', async(req, res) => {
     renderError(res, e);
   }
 });
-
+router.post('/event/like/:id', async(req, res) => {
+    try {
+      const id = req.params.id;
+      const body = {id};
+      await axios.put(`${apiServer}/api/event/${id}/like`, {});
+      res.redirect('/');
+    } catch (e) {
+      console.log('Error: ', e.message);
+      renderError(res, e);
+    }
+  });
+  
+  router.post('/event/dislike/:id', async(req, res) => {
+    try {
+      const id = req.params.id;
+      const body = {id};
+      await axios.put(`${apiServer}/api/event/${id}/dislike`, {});
+      res.redirect('/');
+    } catch (e) {
+      console.log('Error: ', e.message);
+      renderError(res, e);
+    }
+  });
+  
 module.exports = router;
